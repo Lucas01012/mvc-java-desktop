@@ -1,0 +1,36 @@
+CREATE DATABASE IF NOT EXISTS sistema_cadastro_aluno;
+USE sistema_cadastro_aluno;
+
+-- Criação da tabela alunos
+CREATE TABLE IF NOT EXISTS alunos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ra VARCHAR(20) NOT NULL UNIQUE,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(14) NOT NULL,
+    celular VARCHAR(15) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    endereco VARCHAR(255),
+    municipio VARCHAR(100),
+    uf VARCHAR(2)
+);
+
+-- Criação da tabela cursos
+CREATE TABLE IF NOT EXISTS cursos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_curso VARCHAR(100) NOT NULL,
+    campus VARCHAR(100) NOT NULL,
+    periodo VARCHAR(20) NOT NULL
+);
+
+-- Criação da tabela matriculas
+CREATE TABLE IF NOT EXISTS matriculas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    aluno_id INT,
+    curso_id INT,
+    disciplina VARCHAR(100) NOT NULL,
+    nota VARCHAR(10) NOT NULL,
+    faltas INT NOT NULL,
+    FOREIGN KEY (aluno_id) REFERENCES alunos(id) ON DELETE CASCADE,
+    FOREIGN KEY (curso_id) REFERENCES cursos(id) ON DELETE CASCADE
+);
