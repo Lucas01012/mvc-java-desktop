@@ -1,21 +1,31 @@
 package model;
 
 public class Curso {
-	private String nomeCurso;
+    private int id;
+    private String nomeCurso;
     private String campus;
     private String periodo;
 
-    public Curso(String nomeCurso, String campus, String periodo) {
+    public Curso(int id, String nomeCurso, String campus, String periodo) {
+        this.id = id;
         this.nomeCurso = nomeCurso;
         this.campus = campus;
         this.periodo = periodo;
     }
 
-    public Curso() {
-
+    public int getId() {
+        return id;
     }
 
-    public String getNomeCurso() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Curso() {
+    }
+
+
+    public  String getNomeCurso() {
         return nomeCurso;
     }
 
@@ -39,10 +49,8 @@ public class Curso {
         this.periodo = periodo;
     }
 
-    // Método para representar o curso como uma String
     @Override
     public String toString() {
         return String.format("Curso: %s, Campus: %s, Período: %s", nomeCurso, campus, periodo);
     }
-
 }

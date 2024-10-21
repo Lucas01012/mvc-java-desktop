@@ -7,19 +7,22 @@ import java.util.List;
 import dao.AlunoDAO;
 
 public class Aluno {
+    private int id;
     private String ra;
     private String nome;
     private String cpf;
     private String celular;
-    private LocalDate dataNascimento; // Alterado para LocalDate
+    private LocalDate dataNascimento;
     private String email;
     private String endereco;
     private String municipio;
     private String uf;
-
+    private Curso curso;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public Aluno(String ra, String nome, String cpf, String celular, LocalDate dataNascimento, String email, String endereco, String municipio, String uf) {
+    public Aluno(int id, String ra, String nome, String cpf, String celular, LocalDate dataNascimento,
+                 String email, String endereco, String municipio, String uf, Curso curso) {
+        this.id = id;
         this.ra = ra;
         this.nome = nome;
         this.cpf = cpf;
@@ -29,20 +32,35 @@ public class Aluno {
         this.endereco = endereco;
         this.municipio = municipio;
         this.uf = uf;
+        this.curso = curso;
     }
 
-    public Aluno() {
+    public Aluno() {}
 
+    public Curso getCurso() {
+        return curso;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-    public LocalDate getDataNascimento(){
-        return dataNascimento;
+    public String getNomeCurso() {
+        return curso != null ? curso.getNomeCurso() : "Curso não disponível"; // Método para obter o nome do curso
     }
 
-    // Getters e Setters para todos os campos
+    public String getCampus() {
+        return curso != null ? curso.getCampus() : "Campus não disponível"; // Método para obter o campus
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getRa() {
         return ra;
     }
@@ -75,10 +93,17 @@ public class Aluno {
         this.celular = celular;
     }
 
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 
     public void setDataNascimento(String dataNascimento) {
         try {
-            this.dataNascimento = LocalDate.parse(dataNascimento, FORMATTER); // Converte a String para LocalDate
+            this.dataNascimento = LocalDate.parse(dataNascimento, FORMATTER);
         } catch (DateTimeParseException e) {
             System.err.println("Data de nascimento inválida: " + e.getMessage());
         }
@@ -116,20 +141,9 @@ public class Aluno {
         this.uf = uf;
     }
 
-    // Método para validar se o RA é único
-    public boolean isRaValido(AlunoDAO alunoDAO) {
-        List<Aluno> alunos = alunoDAO.listarAlunos();
-        for (Aluno aluno : alunos) {
-            if (aluno.getRa().equals(this.ra)) {
-                return false; // RA já existe
-            }
-        }
-        return true; // RA é único
-    }
-
-    // Método para representar o aluno como uma String
     @Override
     public String toString() {
-        return String.format("RA: %s, Nome: %s, Data de Nascimento: %s", ra, nome, dataNascimento.format(FORMATTER));
+        return String.format("RA: %s, Nome: %s, Data de Nascimento: %s, Curso: %s, Campus: %s",
+                ra, nome, dataNascimento.format(FORMATTER), getNomeCurso(), getCampus());
     }
 }
