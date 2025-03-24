@@ -6,13 +6,13 @@ Este é um sistema de gerenciamento de alunos desenvolvido em Java seguindo o pa
 
 🛠️ Tecnologias Utilizadas
 
-Java (JDK 11 ou superior)
+Java
 
-MySQL (ou outro banco relacional)
+MySQL
 
 Hibernate/JPA
 
-Swing/JavaFX (para a interface gráfica)
+Swing (para a interface gráfica)
 
 JDBC (para conexão com o banco de dados)
 
