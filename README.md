@@ -78,18 +78,7 @@ Execute o projeto a partir da classe principal (main)
 
 Acesse a interface gráfica para gerenciar os alunos
 
-📝 Melhorias Futuras
-
-📊 Dashboard com estatísticas
-
-📅 Implementação de um calendário acadêmico
-
-📄 Geração de relatórios em PDF
-
-🔑 Autenticação de usuários
-
 📌 Autor
-
 Desenvolvido por Lucas Oliveira Silva
 
 ✉️ Caso tenha dúvidas ou sugestões, sinta-se à vontade para entrar em contato!
